@@ -1,0 +1,41 @@
+{% load static %}
+<style>
+.hello-msg{
+  font-size: 18px;
+  margin-right: 20px;
+  color: #e1e1e1;
+}
+.name{
+  color: #fff;
+  font-family: 'Pacifico', cursive;
+}
+.pad{
+  padding-left: 20px;
+}
+.decor{
+  text-decoration: none;
+}
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <img src="{% static 'images/logo.png' %}" alt="logo">
+      <span class="name pad">CRM</span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ps-5">
+          {% if request.user.is_staff %}
+          <li class="nav-item">
+            <a class="nav-link active name" aria-current="page" href="{% url 'home' %}">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link name" href="{% url 'products' %}">Products</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+      <span class="hello-msg name">Hello, {{request.user}}</span>
+      <span class="btn btn-info hello-msg name"><a href="/logout" class="decor text-white">Logout</a></span>
+    </div>
+  </nav>
